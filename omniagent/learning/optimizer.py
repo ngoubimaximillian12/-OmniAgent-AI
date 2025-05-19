@@ -12,7 +12,7 @@ def summarize_feedback():
     if not os.path.exists(FEEDBACK_LOG_PATH):
         return "No feedback log found."
 
-    with open(FEEDBACK_LOG_PATH, "r") as f:
+    with open(FEEDBACK_LOG_PATH, "r", encoding="utf-8") as f:
         lines = f.readlines()
 
     total = len(lines)
@@ -20,13 +20,13 @@ def summarize_feedback():
         return "No feedback entries yet."
 
     feedback_data = [json.loads(line) for line in lines]
-    feedback_counter = Counter([entry["feedback"] for entry in feedback_data])
-    agent_counter = Counter([entry["agent"] for entry in feedback_data])
+    feedback_counter = Counter(entry.get("feedback", "").lower() for entry in feedback_data)
+    agent_counter = Counter(entry.get("agent", "") for entry in feedback_data)
 
     summary = {
         "total_feedback": total,
         "by_feedback": dict(feedback_counter),
-        "by_agent": dict(agent_counter)
+        "by_agent": dict(agent_counter),
     }
     return summary
 
@@ -37,13 +37,15 @@ def list_problematic_tasks(agent_filter=None, limit=5):
     if not os.path.exists(LESSON_LOG_PATH):
         return []
 
-    with open(LESSON_LOG_PATH, "r") as f:
+    with open(LESSON_LOG_PATH, "r", encoding="utf-8") as f:
         entries = [json.loads(line) for line in f]
+
+    negative_feedbacks = {"no", "👎", "bad"}
 
     filtered = [
         e for e in entries
-        if e["feedback"].lower() in ["no", "👎", "bad"] and
-        (agent_filter is None or e["agent"] == agent_filter)
+        if e.get("feedback", "").lower() in negative_feedbacks and
+        (agent_filter is None or e.get("agent") == agent_filter)
     ]
 
     # Return most recent limited entries

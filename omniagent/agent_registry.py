@@ -1,20 +1,19 @@
-from agents.code_agent import CodeAgent
-from agents.legal_agent import LegalAgent
-from agents.data_agent import DataAgent
-from agents.finance_agent import FinanceAgent
-from agents.cyber_agent import CyberAgent
-from agents.teach_agent import TeachAgent
-from agents.memory_agent import MemoryAgent
-from agents.vision_agent import VisionAgent
+from omniagent.agents.code_agent import CodeAgent
+from omniagent.agents.legal_agent import LegalAgent
+from omniagent.agents.data_agent import DataAgent
+from omniagent.agents.finance_agent import FinanceAgent
+from omniagent.agents.cyber_agent import CyberAgent
+from omniagent.agents.vision_agent import VisionAgent
+from omniagent.agents.teach_agent import TeachAgent
+from omniagent.agents.memory_agent import MemoryAgent
 
-# Registry for all active agents in the system
 AGENTS = {
-    "CodeAgent": CodeAgent(),
-    "LegalAgent": LegalAgent(),
-    "DataAgent": DataAgent(),
-    "FinanceAgent": FinanceAgent(),
-    "CyberAgent": CyberAgent(),
-    "TeachAgent": TeachAgent(),
-    "MemoryAgent": MemoryAgent(),
-    "VisionAgent": VisionAgent()
+    "code": CodeAgent(),
+    "legal": LegalAgent(),
+    "data": DataAgent(),
+    "finance": FinanceAgent(),
+    "cyber": CyberAgent(),
+    "vision": VisionAgent(),
+    "teach": TeachAgent(),
+    "memory": MemoryAgent(),
 }

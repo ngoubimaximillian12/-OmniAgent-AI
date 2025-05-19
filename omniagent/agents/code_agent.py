@@ -1,13 +1,13 @@
-from agents.base_agent import BaseAgent
-from llm.llm_provider import LLMProvider
-from memory.memory_utils import log_and_embed, retrieve_similar_prompts
-from llm.prompt_manager import build_prompt
-from llm.response_parser import clean_response
+from omniagent.agents.base_agent import BaseAgent
+from omniagent.llm.llm_provider import LLMProvider
+from omniagent.memory.memory_utils import log_and_embed, retrieve_similar_prompts
+from omniagent.llm.prompt_manager import build_prompt
+from omniagent.llm.response_parser import clean_response
 
 class CodeAgent(BaseAgent):
     """
     CodeAgent handles generation, debugging, explanation of code.
-    It uses the OmniAgent LLM and interacts with memory modules.
+    Uses the OmniAgent DeepSeek LLM directly for all queries.
     """
 
     def __init__(self):
@@ -23,13 +23,17 @@ class CodeAgent(BaseAgent):
 
     def run(self, task, context=None, memory=None):
         """
-        Executes the code-related task using the LLM.
-        Adds memory context and stores result for future use.
-        """
-        # Retrieve relevant memory based on task text
-        relevant_memory = retrieve_similar_prompts(task)
+        Always use DeepSeek LLM to handle the task fully.
 
-        # Build structured prompt
+        - Retrieve relevant memory (if not provided)
+        - Build detailed prompt with memory and context
+        - Run the DeepSeek LLM directly
+        - Clean, log, and return the output
+        """
+        # Get similar past memory if not supplied
+        relevant_memory = memory if memory else retrieve_similar_prompts(task)
+
+        # Build the prompt with agent name, task, context, and memory
         prompt = build_prompt(
             agent_name=self.name,
             task=task,
@@ -37,13 +41,13 @@ class CodeAgent(BaseAgent):
             memory=relevant_memory
         )
 
-        # Run generation using the shared OmniAgent model
+        # Directly run the prompt on the DeepSeek LLM (no fallback)
         raw_output = self.llm.run(prompt)
 
-        # Clean up and trim output
+        # Clean response to remove prompt echoes etc.
         final_output = clean_response(raw_output)
 
-        # Save result into memory and vector index
+        # Log the input/output pair for future retrieval
         log_and_embed(agent=self.name, prompt=task, output=final_output)
 
         return final_output

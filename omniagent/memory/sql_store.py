@@ -1,7 +1,13 @@
-import sqlite3
-from config import SQLITE_DB_PATH
-from datetime import datetime
+import sys
 import os
+import sqlite3
+from datetime import datetime
+
+# Ensure project root is in sys.path so imports work correctly
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+
+from project_config import SQLITE_DB_PATH
+
 
 def init_db():
     """
@@ -24,6 +30,7 @@ def init_db():
     conn.commit()
     conn.close()
     print("✅ SQLite memory DB initialized")
+
 
 def save_to_sql(agent: str, prompt: str, output: str, user: str = "default"):
     """

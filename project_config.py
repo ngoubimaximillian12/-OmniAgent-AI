@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 
-# Load from .env or system environment
+# Load environment variables from .env or system environment
 load_dotenv()
 
 # === LLM Configuration ===
@@ -16,6 +16,7 @@ QDRANT_URL = os.getenv("QDRANT_URL", "http://localhost:6333")
 # === API Keys (optional for tools) ===
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 HUGGINGFACE_TOKEN = os.getenv("HUGGINGFACE_TOKEN", "")
+DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY", "")
 
 # === UI or Runtime Flags (optional) ===
 DEBUG_MODE = os.getenv("DEBUG_MODE", "false").lower() == "true"

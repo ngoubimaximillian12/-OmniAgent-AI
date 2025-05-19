@@ -1,6 +1,6 @@
-from memory.sql_store import save_to_sql
-from memory.embedder import embed
-from memory.vector_store import add_memory, search_memory
+from .sql_store import save_to_sql
+from .embedder import embed
+from .vector_store import add_memory, search_memory
 
 def log_and_embed(agent: str, prompt: str, output: str):
     """
