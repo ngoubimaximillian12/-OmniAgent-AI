@@ -31,7 +31,7 @@ class CodeAgent(BaseAgent):
         - Clean, log, and return the output
         """
         # Get similar past memory if not supplied
-        relevant_memory = memory if memory else retrieve_similar_prompts(task)
+        relevant_memory = memory if memory is not None else retrieve_similar_prompts(task)
 
         # Build the prompt with agent name, task, context, and memory
         prompt = build_prompt(

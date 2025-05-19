@@ -1,5 +1,9 @@
 import os
 from dotenv import load_dotenv
+from dotenv import load_dotenv
+load_dotenv()  # This loads environment variables from your .env file
+SQLITE_DB_PATH = ... # Your actual DB path or config here
+
 
 # Load environment variables from .env or system environment
 load_dotenv()

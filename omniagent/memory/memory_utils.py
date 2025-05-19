@@ -2,6 +2,7 @@ from .sql_store import save_to_sql
 from .embedder import embed
 from .vector_store import add_memory, search_memory
 
+
 def log_and_embed(agent: str, prompt: str, output: str):
     """
     Stores prompt and output in SQL + embeds the prompt to vector memory.
@@ -14,6 +15,7 @@ def log_and_embed(agent: str, prompt: str, output: str):
     save_to_sql(agent, prompt, output)
     vector = embed(prompt)
     add_memory(prompt, vector)
+
 
 def retrieve_similar_prompts(query: str, top_k: int = 3):
     """

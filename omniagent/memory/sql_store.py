@@ -3,8 +3,8 @@ import os
 import sqlite3
 from datetime import datetime
 
-# Ensure project root is in sys.path so imports work correctly
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+# Add the root project directory to sys.path so project_config can be imported
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..')))
 
 from project_config import SQLITE_DB_PATH
 
