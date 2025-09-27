@@ -487,6 +487,15 @@ Built with ❤️ for the future of AI assistance
 
 OmniAgent AI - Where every conversation makes the system smarter
 
+👨‍💻 Author
+Ngoubi Maximillian Diangha
+GitHub: @ngoubimaximillian12
+Email: ngoubimaximilliandiangha@gmail.com
+LinkedIn: Diangha Ngoubi
+
+
+
+
 
 
 This expanded README maintains your original structure while adding comprehensive documentation covering installation, usage, architecture, security, deployment, and contribution guidelines. It provides both technical depth for developers and clear guidance for end users.
