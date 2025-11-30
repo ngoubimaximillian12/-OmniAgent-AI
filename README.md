@@ -6,7 +6,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104.0-009688.svg)](https://fastapi.tiangolo.com)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.28.0-FF4B4B.svg)](https://streamlit.io)
 
-**OmniAgent** is a modular, memory-augmented, LLM-powered assistant framework. It supports multiple specialized agents that can reason, learn from feedback, and continuously improve over time — all powered by DeepSeek and open tools like FAISS, SQLite, and Streamlit.
+**OmniAgent** is a modular, memory-augmented, LLM-powered assistant framework. It supports multiple specialized agents that can reason, learn from feedback, and continuously improve over time — all powered by DeepSeek and open tools like FAISS, SQLite, and Streamlit
 
 ---
 
